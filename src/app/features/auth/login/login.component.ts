@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { DataService } from '@core/services/data.service';
+import { User } from '@core/models';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,22 @@ export class LoginComponent {
   rememberMe = signal(false);
   isLoading = signal(false);
   error = signal('');
+  showUserPicker = signal(false);
+
+  // Get all users from data service
+  users = computed(() => this.dataService.users());
+
+  // Group users by role
+  students = computed(() => this.users().filter(u => u.role === 'student'));
+  tutors = computed(() => this.users().filter(u => u.role === 'tutor'));
 
   returnUrl = computed(() => this.route.snapshot.queryParams['returnUrl'] || '/');
+
+  selectUser(user: User): void {
+    this.email.set(user.email);
+    this.password.set(user.password);
+    this.error.set('');
+  }
 
   async onSubmit(): Promise<void> {
     this.error.set('');
@@ -44,5 +59,9 @@ export class LoginComponent {
     }
 
     this.isLoading.set(false);
+  }
+
+  toggleUserPicker(): void {
+    this.showUserPicker.update(v => !v);
   }
 }

@@ -15,6 +15,7 @@
   --upb-primary: var(--upb-magenta);
   --upb-primary-hover: #B8188A;
   --upb-primary-light: rgba(208, 28, 158, 0.1);
+  --upb-violet-light: rgba(166, 60, 242, 0.1);
   --upb-crimson-solid: var(--upb-crimson);
   --upb-violet-solid: var(--upb-violet);
 
@@ -90,6 +91,7 @@
   --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
   --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
   --shadow-xl: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+  --shadow-2xl: 0 25px 50px -12px var(--shadow-color);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -131,6 +133,7 @@
   --shadow-color: rgb(0 0 0 / 0.3);
 
   --upb-primary-light: rgba(208, 28, 158, 0.2);
+  --upb-violet-light: rgba(166, 60, 242, 0.2);
 
   /* Status colors (dark theme) - muted backgrounds for better contrast */
   --status-pending-bg: #78350F;
