@@ -388,6 +388,26 @@
   height: 24px;
 }
 
+.action-icon.primary {
+  background: var(--upb-primary-light);
+  color: var(--upb-magenta);
+}
+
+.action-icon.confirmed {
+  background: var(--status-confirmed-bg);
+  color: var(--status-confirmed-text);
+}
+
+.action-icon.warning {
+  background: var(--status-pending-bg);
+  color: var(--status-pending-text);
+}
+
+.action-icon.info {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
 .action-card h3 {
   font-size: 1rem;
   font-weight: 600;

@@ -67,9 +67,10 @@
             @for (cls of upcomingClasses(); track cls.id) {
               <article class="class-card" [class]="'status-' + cls.status">
                 <div class="class-date">
-                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
-                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
-                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                  @let parts = formatDateParts(cls.date);
+                  <span class="day">{{ parts.day }}</span>
+                  <span class="month">{{ parts.month }}</span>
+                  <span class="weekday">{{ parts.weekday }}</span>
                 </div>
                 <div class="class-info">
                   <div class="class-header">
@@ -161,9 +162,10 @@
             @for (cls of pastClasses(); track cls.id) {
               <article class="class-card" [class]="'status-' + cls.status">
                 <div class="class-date">
-                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
-                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
-                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                  @let parts = formatDateParts(cls.date);
+                  <span class="day">{{ parts.day }}</span>
+                  <span class="month">{{ parts.month }}</span>
+                  <span class="weekday">{{ parts.weekday }}</span>
                 </div>
                 <div class="class-info">
                   <div class="class-header">

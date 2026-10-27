@@ -23,6 +23,10 @@ export class TutorDashboardComponent implements OnInit {
   readonly tutorUpcomingClasses = computed(() => this.dataService.tutorUpcomingClasses());
   readonly tutorPastClasses = computed(() => this.dataService.tutorPastClasses());
   readonly tutorPendingClasses = computed(() => this.dataService.tutorPendingClasses());
+  readonly tutorProjectedEarnings = computed(() => this.dataService.tutorProjectedEarnings());
+  readonly tutorProjectedEarningsFormatted = computed(() =>
+    this.tutorProjectedEarnings().toLocaleString('es-CO') + ' COP',
+  );
 
   stats = computed(() => {
     const upcoming = this.tutorUpcomingClasses();
@@ -72,6 +76,15 @@ export class TutorDashboardComponent implements OnInit {
       day: 'numeric',
       month: 'short',
     });
+  }
+
+  formatDateParts(dateStr: string): { day: string; month: string; weekday: string } {
+    const date = new Date(dateStr);
+    return {
+      day: date.toLocaleDateString('es-CO', { day: 'numeric' }),
+      month: date.toLocaleDateString('es-CO', { month: 'short' }),
+      weekday: date.toLocaleDateString('es-CO', { weekday: 'short' }),
+    };
   }
 
   formatTime(timeStr: string): string {

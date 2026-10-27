@@ -6,6 +6,25 @@ import { DataService } from '@core/services/data.service';
 import { ScheduledClass } from '@core/models';
 import { FocusTrapDirective } from '@shared/directives/focus-trap.directive';
 
+interface RescheduleForm {
+  date: string;
+  startTime: string;
+  endTime: string;
+  reason: string;
+}
+
+interface RescheduleErrors {
+  date?: string;
+  startTime?: string;
+  endTime?: string;
+  reason?: string;
+  submit?: string;
+}
+
+interface UnreadMessageCount {
+  [classId: string]: number;
+}
+
 @Component({
   selector: 'app-tutor-classes',
   standalone: true,
@@ -21,6 +40,47 @@ export class TutorClassesComponent implements OnInit {
   readonly tutorPastClasses = computed(() => this.dataService.tutorPastClasses());
   readonly tutorPendingClasses = computed(() => this.dataService.tutorPendingClasses());
 
+  // Unread message tracking
+  readMessageIds = signal<Set<string>>(new Set());
+
+  // Computed: unread message counts per class (only student messages)
+  readonly unreadMessageCounts = computed((): UnreadMessageCount => {
+    const readIds = this.readMessageIds();
+    const allMessages = this.dataService.classMessages();
+    const currentUser = this.dataService.currentUser();
+    const tutorId = currentUser?.id;
+
+    const counts: UnreadMessageCount = {};
+
+    // Get all classes this tutor is involved in
+    const allClasses = [
+      ...this.tutorPendingClasses(),
+      ...this.tutorUpcomingClasses(),
+      ...this.tutorPastClasses(),
+    ];
+
+    for (const cls of allClasses) {
+      const classMessages = allMessages
+        .filter((m) => m.classId === cls.id)
+        .filter((m) => m.senderRole === 'student') // Only student messages
+        .filter((m) => m.senderId !== tutorId); // Not sent by tutor (defensive)
+
+      const unreadCount = classMessages.filter((m) => !readIds.has(m.id)).length;
+      if (unreadCount > 0) {
+        counts[cls.id] = unreadCount;
+      }
+    }
+
+    return counts;
+  });
+
+  // Computed: total unread for confirmed classes (for tab badge)
+  readonly unreadConfirmedCount = computed(() => {
+    const counts = this.unreadMessageCounts();
+    const confirmedClasses = this.tutorUpcomingClasses().filter((c) => c.status === 'confirmed');
+    return confirmedClasses.reduce((sum, cls) => sum + (counts[cls.id] || 0), 0);
+  });
+
   activeTab = signal<'pending' | 'upcoming' | 'past'>('pending');
   selectedClass = signal<ScheduledClass | null>(null);
   showChat = signal(false);
@@ -30,13 +90,13 @@ export class TutorClassesComponent implements OnInit {
   // Reschedule modal state
   showRescheduleModal = signal(false);
   rescheduleClass = signal<ScheduledClass | null>(null);
-  rescheduleForm = signal({
+  rescheduleForm = signal<RescheduleForm>({
     date: '',
     startTime: '',
     endTime: '',
     reason: '',
   });
-  rescheduleErrors = signal<Record<string, string>>({});
+  rescheduleErrors = signal<RescheduleErrors>({});
   isRescheduling = signal(false);
 
   goBack(): void {
@@ -76,6 +136,15 @@ export class TutorClassesComponent implements OnInit {
       day: 'numeric',
       month: 'long',
     });
+  }
+
+  formatDateParts(dateStr: string): { day: string; month: string; weekday: string } {
+    const date = new Date(dateStr);
+    return {
+      day: date.toLocaleDateString('es-CO', { day: 'numeric' }),
+      month: date.toLocaleDateString('es-CO', { month: 'short' }),
+      weekday: date.toLocaleDateString('es-CO', { weekday: 'short' }),
+    };
   }
 
   formatTime(timeStr: string): string {
@@ -137,34 +206,34 @@ export class TutorClassesComponent implements OnInit {
     this.rescheduleErrors.set({});
   }
 
-  updateRescheduleField(field: keyof typeof this.rescheduleForm, value: string): void {
+  updateRescheduleField(field: keyof RescheduleForm, value: string): void {
     this.rescheduleForm.update(form => ({ ...form, [field]: value }));
     this.rescheduleErrors.update(errors => ({ ...errors, [field]: '' }));
   }
 
   private validateRescheduleForm(): boolean {
     const form = this.rescheduleForm();
-    const errors: Record<string, string> = {};
+    const errors: RescheduleErrors = {};
 
     const today = new Date().toISOString().split('T')[0];
     if (!form.date) {
-      errors.date = 'La fecha es obligatoria';
+      errors['date'] = 'La fecha es obligatoria';
     } else if (form.date < today) {
-      errors.date = 'La fecha no puede ser anterior a hoy';
+      errors['date'] = 'La fecha no puede ser anterior a hoy';
     }
 
     if (!form.startTime) {
-      errors.startTime = 'La hora de inicio es obligatoria';
+      errors['startTime'] = 'La hora de inicio es obligatoria';
     }
 
     if (!form.endTime) {
-      errors.endTime = 'La hora de fin es obligatoria';
+      errors['endTime'] = 'La hora de fin es obligatoria';
     } else if (form.startTime && form.endTime && form.endTime <= form.startTime) {
-      errors.endTime = 'La hora de fin debe ser posterior a la de inicio';
+      errors['endTime'] = 'La hora de fin debe ser posterior a la de inicio';
     }
 
     if (!form.reason.trim()) {
-      errors.reason = 'El motivo es obligatorio';
+      errors['reason'] = 'El motivo es obligatorio';
     }
 
     this.rescheduleErrors.set(errors);
@@ -201,12 +270,31 @@ export class TutorClassesComponent implements OnInit {
       this.selectedClass.set(cls);
       this.showChat.set(true);
       this.chatMessage.set('');
+      // Mark all student messages in this class as read
+      this.markClassMessagesAsRead(classId);
     }
   }
 
   closeChat(): void {
     this.showChat.set(false);
     this.selectedClass.set(null);
+  }
+
+  private markClassMessagesAsRead(classId: string): void {
+    const messages = this.dataService.getClassMessages(classId);
+    const studentMessageIds = messages
+      .filter((m) => m.senderRole === 'student')
+      .map((m) => m.id);
+
+    if (studentMessageIds.length > 0) {
+      this.readMessageIds.update((ids) => {
+        const newIds = new Set(ids);
+        for (const id of studentMessageIds) {
+          newIds.add(id);
+        }
+        return newIds;
+      });
+    }
   }
 
   sendMessage(): void {

@@ -44,6 +44,9 @@
           <polyline points="22 4 12 14.01 9 11.01" />
         </svg>
         Confirmadas ({{ tutorUpcomingClasses().filter(c => c.status === 'confirmed').length }})
+        @if (unreadConfirmedCount() > 0) {
+          <span class="unread-badge">{{ unreadConfirmedCount() }}</span>
+        }
       </button>
       <button 
         class="tab-btn" 
@@ -68,9 +71,10 @@
             @for (cls of tutorPendingClasses(); track cls.id) {
               <article class="class-card priority-card" [class]="'status-' + cls.status">
                 <div class="class-date">
-                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
-                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
-                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                  @let parts = formatDateParts(cls.date);
+                  <span class="day">{{ parts.day }}</span>
+                  <span class="month">{{ parts.month }}</span>
+                  <span class="weekday">{{ parts.weekday }}</span>
                 </div>
                 <div class="class-info">
                   <div class="class-header">
@@ -141,9 +145,10 @@
               @if (cls.status === 'confirmed') {
                 <article class="class-card" [class]="'status-' + cls.status">
                   <div class="class-date">
-                    <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
-                    <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
-                    <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                    @let parts = formatDateParts(cls.date);
+                    <span class="day">{{ parts.day }}</span>
+                    <span class="month">{{ parts.month }}</span>
+                    <span class="weekday">{{ parts.weekday }}</span>
                   </div>
                   <div class="class-info">
                     <div class="class-header">
@@ -178,6 +183,9 @@
                           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         Chat
+                        @if ((unreadMessageCounts()[cls.id] || 0) > 0) {
+                          <span class="unread-badge">{{ unreadMessageCounts()[cls.id] }}</span>
+                        }
                       </button>
                       <button class="btn btn-secondary btn-sm" (click)="openRescheduleModal(cls.id)">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -229,9 +237,10 @@
             @for (cls of tutorPastClasses(); track cls.id) {
               <article class="class-card" [class]="'status-' + cls.status">
                 <div class="class-date">
-                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
-                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
-                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                  @let parts = formatDateParts(cls.date);
+                  <span class="day">{{ parts.day }}</span>
+                  <span class="month">{{ parts.month }}</span>
+                  <span class="weekday">{{ parts.weekday }}</span>
                 </div>
                 <div class="class-info">
                   <div class="class-header">
@@ -286,6 +295,9 @@
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                       </svg>
                       Ver Chat
+                      @if ((unreadMessageCounts()[cls.id] || 0) > 0) {
+                        <span class="unread-badge">{{ unreadMessageCounts()[cls.id] }}</span>
+                      }
                     </button>
                   }
                 </div>
@@ -353,6 +365,125 @@
               <polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>
           </button>
+        </form>
+      </div>
+    }
+
+    <!-- Reschedule Modal -->
+    @if (showRescheduleModal() && rescheduleClass(); as cls) {
+      <div class="modal-overlay" (click)="closeRescheduleModal()" aria-hidden="true"></div>
+      <div class="modal reschedule-modal" role="dialog" aria-modal="true" aria-labelledby="reschedule-title" appFocusTrap (focusTrapEscape)="closeRescheduleModal()">
+        <header class="modal-header">
+          <div>
+            <h2 id="reschedule-title" class="modal-title">Reagendar Clase</h2>
+            <p class="modal-subtitle">{{ cls.subject }} con {{ getStudentName(cls.studentId) }}</p>
+          </div>
+          <button class="modal-close" (click)="closeRescheduleModal()" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </header>
+        <form class="modal-body" (ngSubmit)="submitReschedule()">
+          <div class="form-group">
+            <label for="reschedule-date" class="form-label">Fecha <span class="required" aria-hidden="true">*</span></label>
+            <input 
+              type="date" 
+              id="reschedule-date"
+              [value]="rescheduleForm().date"
+              (input)="updateRescheduleField('date', $any($event.target).value)"
+              class="input"
+              [class.invalid]="rescheduleErrors().date"
+              required
+              aria-describedby="date-error date-hint"
+            />
+            @if (rescheduleErrors().date) {
+              <span id="date-error" class="form-error" role="alert">{{ rescheduleErrors().date }}</span>
+            }
+            <span id="date-hint" class="form-hint">Fecha mínima: hoy</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reschedule-start-time" class="form-label">Hora de inicio <span class="required" aria-hidden="true">*</span></label>
+              <input 
+                type="time" 
+                id="reschedule-start-time"
+                [value]="rescheduleForm().startTime"
+                (input)="updateRescheduleField('startTime', $any($event.target).value)"
+                class="input"
+                [class.invalid]="rescheduleErrors().startTime"
+                required
+                aria-describedby="start-time-error"
+              />
+              @if (rescheduleErrors().startTime) {
+                <span id="start-time-error" class="form-error" role="alert">{{ rescheduleErrors().startTime }}</span>
+              }
+            </div>
+            <div class="form-group">
+              <label for="reschedule-end-time" class="form-label">Hora de fin <span class="required" aria-hidden="true">*</span></label>
+              <input 
+                type="time" 
+                id="reschedule-end-time"
+                [value]="rescheduleForm().endTime"
+                (input)="updateRescheduleField('endTime', $any($event.target).value)"
+                class="input"
+                [class.invalid]="rescheduleErrors().endTime"
+                required
+                aria-describedby="end-time-error"
+              />
+              @if (rescheduleErrors().endTime) {
+                <span id="end-time-error" class="form-error" role="alert">{{ rescheduleErrors().endTime }}</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reschedule-reason" class="form-label">Motivo <span class="required" aria-hidden="true">*</span></label>
+            <textarea 
+              id="reschedule-reason"
+              [value]="rescheduleForm().reason"
+              (input)="updateRescheduleField('reason', $any($event.target).value)"
+              class="input textarea"
+              [class.invalid]="rescheduleErrors().reason"
+              rows="3"
+              required
+              aria-describedby="reason-error"
+              placeholder="Explique el motivo del reagendamiento..."
+            ></textarea>
+            @if (rescheduleErrors().reason) {
+              <span id="reason-error" class="form-error" role="alert">{{ rescheduleErrors().reason }}</span>
+            }
+          </div>
+
+          @if (rescheduleErrors().submit) {
+            <div class="form-error submit-error" role="alert">{{ rescheduleErrors().submit }}</div>
+          }
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" (click)="closeRescheduleModal()" [disabled]="isRescheduling()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="isRescheduling()">
+              @if (isRescheduling()) {
+                <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1" stroke-linecap="round" />
+                  <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite" />
+                </svg>
+                Reagendando...
+              } @else {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                  <path d="M21 12a9 9 0 1 0-9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                  <path d="M16 16h5v5" />
+                </svg>
+                Reagendar
+              }
+            </button>
+          </div>
         </form>
       </div>
     }

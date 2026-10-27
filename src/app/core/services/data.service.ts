@@ -783,6 +783,31 @@ stats.ttest_rel(before, after)
     return this.tutorClasses().filter((c) => c.status === 'pending');
   });
 
+  // Tutor earnings computation
+  readonly tutorProjectedEarnings = computed(() => {
+    const tutorId = this.currentTutorId();
+    if (!tutorId) return 0;
+
+    const tutor = this.getTutorProfile(tutorId);
+    if (!tutor) return 0;
+
+    const confirmedUpcomingClasses = this.tutorUpcomingClasses().filter(
+      (c) => c.status === 'confirmed',
+    );
+
+    // Sum hours for each confirmed upcoming class
+    let totalHours = 0;
+    for (const cls of confirmedUpcomingClasses) {
+      const start = cls.startTime.split(':').map(Number);
+      const end = cls.endTime.split(':').map(Number);
+      const startMinutes = start[0] * 60 + start[1];
+      const endMinutes = end[0] * 60 + end[1];
+      totalHours += (endMinutes - startMinutes) / 60;
+    }
+
+    return totalHours * tutor.hourlyRate;
+  });
+
   // Messages for a specific class
   getClassMessages(classId: string): ClassMessage[] {
     return this.classMessages()

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, HostListener, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -169,6 +169,13 @@ export class ProfileComponent implements OnInit {
     if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
       this.dataService.logout();
       this.router.navigate(['/login']);
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.isEditing()) {
+      this.cancelEditing();
     }
   }
 

@@ -82,6 +82,15 @@ export class StudentDashboardComponent implements OnInit {
     });
   }
 
+  formatDateParts(dateStr: string): { day: string; month: string; weekday: string } {
+    const date = new Date(dateStr);
+    return {
+      day: date.toLocaleDateString('es-CO', { day: 'numeric' }),
+      month: date.toLocaleDateString('es-CO', { month: 'short' }),
+      weekday: date.toLocaleDateString('es-CO', { weekday: 'short' }),
+    };
+  }
+
   formatTime(timeStr: string): string {
     return timeStr.slice(0, 5);
   }
