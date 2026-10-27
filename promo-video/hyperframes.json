@@ -1,0 +1,39 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",
+  "registry": "https://raw.githubusercontent.com/heygen-com/hyperframes/main/registry",
+  "paths": {
+    "blocks": "compositions",
+    "components": "compositions/components",
+    "assets": "assets"
+  },
+  "media": {
+    "autoProxy": true
+  },
+  "registryItems": [
+    {
+      "name": "glass-hero",
+      "type": "hyperframes:block",
+      "target": "compositions/glass-hero.html"
+    },
+    {
+      "name": "canopy-part-title",
+      "type": "hyperframes:block",
+      "target": "compositions/canopy-part-title/canopy-part-title.html"
+    },
+    {
+      "name": "grid-card-assemble",
+      "type": "hyperframes:component",
+      "target": "compositions/components/grid-card-assemble.html"
+    },
+    {
+      "name": "sticky-mock-swap",
+      "type": "hyperframes:component",
+      "target": "compositions/components/sticky-mock-swap.html"
+    },
+    {
+      "name": "store-badge-lockup",
+      "type": "hyperframes:component",
+      "target": "compositions/components/store-badge-lockup.html"
+    }
+  ]
+}

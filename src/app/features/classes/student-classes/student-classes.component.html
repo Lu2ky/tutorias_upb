@@ -1,0 +1,231 @@
+<div class="classes-page">
+  <div class="classes-container">
+    @if (showBookedToast()) {
+      <div class="toast toast-success" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+        <span>¡Clase agendada exitosamente! El tutor recibirá la solicitud.</span>
+        <button class="toast-close" (click)="showBookedToast.set(false)" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    }
+
+    <!-- Header -->
+    <header class="classes-header">
+      <button class="btn btn-ghost btn-sm back-btn" (click)="goBack()" aria-label="Volver">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Volver
+      </button>
+      <h1 class="page-title">Mis Clases</h1>
+      <p class="page-subtitle">Gestiona tus tutorías agendadas e historial</p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav" aria-label="Filtrar clases">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab() === 'upcoming'" 
+        (click)="activeTab.set('upcoming')"
+        [attr.aria-selected]="activeTab() === 'upcoming'"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Próximas ({{ upcomingClasses().length }})
+      </button>
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab() === 'past'" 
+        (click)="activeTab.set('past')"
+        [attr.aria-selected]="activeTab() === 'past'"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M9 18V5l12-2v13" />
+          <circle cx="6" cy="18" r="3" />
+          <circle cx="18" cy="16" r="3" />
+        </svg>
+        Historial ({{ pastClasses().length }})
+      </button>
+    </nav>
+
+    <!-- Upcoming Classes -->
+    @if (activeTab() === 'upcoming') {
+      <section class="classes-section" aria-labelledby="upcoming-title">
+        @if (upcomingClasses().length > 0) {
+          <div class="class-list">
+            @for (cls of upcomingClasses(); track cls.id) {
+              <article class="class-card" [class]="'status-' + cls.status">
+                <div class="class-date">
+                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
+                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
+                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                </div>
+                <div class="class-info">
+                  <div class="class-header">
+                    <h3 class="class-subject">{{ cls.subject }}</h3>
+                    <span class="status-badge" [class]="getStatusClass(cls.status)">
+                      {{ getStatusLabel(cls.status) }}
+                    </span>
+                  </div>
+                  <div class="class-meta">
+                    <span class="class-time">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      {{ formatTime(cls.startTime) }} - {{ formatTime(cls.endTime) }}
+                    </span>
+                    <span class="class-tutor">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                      </svg>
+                      {{ getTutorInfo(cls.tutorId)?.name || 'Tutor' }}
+                    </span>
+                  </div>
+                  @if (cls.notes) {
+                    <p class="class-notes">{{ cls.notes }}</p>
+                  }
+                </div>
+                <div class="class-actions">
+                  @if (cls.status === 'pending') {
+                    <button class="btn btn-ghost btn-sm" (click)="cancelClass(cls.id)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                      Cancelar
+                    </button>
+                  } @else if (cls.status === 'confirmed') {
+                    <button class="btn btn-secondary btn-sm" (click)="rescheduleClass(cls.id)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                        <path d="M21 12a9 9 0 1 0-9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                        <path d="M16 16h5v5" />
+                      </svg>
+                      Reagendar
+                    </button>
+                    <button class="btn btn-ghost btn-sm" (click)="cancelClass(cls.id)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                      Cancelar
+                    </button>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+              <line x1="12" y1="14" x2="12" y2="20" />
+              <line x1="9" y1="17" x2="15" y2="17" />
+            </svg>
+            <h3>No tienes clases próximas</h3>
+            <p>Cuando agendes una tutoría, aparecerá aquí</p>
+            <a routerLink="/student/schedule" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="12" y1="14" x2="12" y2="20" />
+                <line x1="9" y1="17" x2="15" y2="17" />
+              </svg>
+              Agendar Primera Clase
+            </a>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- Past Classes -->
+    @if (activeTab() === 'past') {
+      <section class="classes-section" aria-labelledby="past-title">
+        @if (pastClasses().length > 0) {
+          <div class="class-list">
+            @for (cls of pastClasses(); track cls.id) {
+              <article class="class-card" [class]="'status-' + cls.status">
+                <div class="class-date">
+                  <span class="day">{{ formatDate(cls.date).split(' ')[2] }}</span>
+                  <span class="month">{{ formatDate(cls.date).split(' ')[1].substring(0, 3) }}</span>
+                  <span class="weekday">{{ formatDate(cls.date).split(' ')[0] }}</span>
+                </div>
+                <div class="class-info">
+                  <div class="class-header">
+                    <h3 class="class-subject">{{ cls.subject }}</h3>
+                    <span class="status-badge" [class]="getStatusClass(cls.status)">
+                      {{ getStatusLabel(cls.status) }}
+                    </span>
+                  </div>
+                  <div class="class-meta">
+                    <span class="class-time">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      {{ formatTime(cls.startTime) }} - {{ formatTime(cls.endTime) }}
+                    </span>
+                    <span class="class-tutor">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                      </svg>
+                      {{ getTutorInfo(cls.tutorId)?.name || 'Tutor' }}
+                    </span>
+                  </div>
+                  @if (cls.notes) {
+                    <p class="class-notes">{{ cls.notes }}</p>
+                  }
+                  @if (cls.cancellationReason) {
+                    <p class="cancellation-reason">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                      </svg>
+                      Cancelada por {{ cls.cancelledBy === 'student' ? 'ti' : 'el tutor' }}: {{ cls.cancellationReason }}
+                    </p>
+                  }
+                  @if (cls.status === 'rescheduled' && cls.rescheduledTo) {
+                    <p class="rescheduled-info">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                      </svg>
+                      Reagendada a: {{ cls.rescheduledTo }}
+                    </p>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+            <h3>No hay historial de clases</h3>
+            <p>Tus clases completadas y canceladas aparecerán aquí</p>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</div>

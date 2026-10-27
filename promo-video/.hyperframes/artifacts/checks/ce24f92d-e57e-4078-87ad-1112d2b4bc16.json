@@ -1,0 +1,350 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 8,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-hero\"> is a timeline element that contains nested <div id=\"hero-glass\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-hero",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-hero\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-value\"> is a timeline element that contains nested <div id=\"value-canopy\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-value",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-value\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-features\"> is a timeline element that contains nested <div id=\"features-grid\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-features",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-features\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-demo\"> is a timeline element that contains nested <div id=\"demo-sticky\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-demo",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-demo\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-cta\"> is a timeline element that contains nested <div id=\"cta-lockup\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-cta",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-cta\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_clip_never_visible",
+        "severity": "warning",
+        "message": "<div id=\"features-grid\"> plays from 0s to 6.5s, but it sits inside <div id=\"scene-features\">, which only shows from 10.5s to 17s, so it never appears. A nested data-start counts from the composition's start, not from <div id=\"scene-features\">.",
+        "selector": "#features-grid",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Give <div id=\"features-grid\"> a data-start between 10.5s to 17s in composition time, or move it out of <div id=\"scene-features\">."
+      },
+      {
+        "code": "nested_clip_never_visible",
+        "severity": "warning",
+        "message": "<div id=\"demo-sticky\"> plays from 0s to 6s, but it sits inside <div id=\"scene-demo\">, which only shows from 16.5s to 22.5s, so it never appears. A nested data-start counts from the composition's start, not from <div id=\"scene-demo\">.",
+        "selector": "#demo-sticky",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Give <div id=\"demo-sticky\"> a data-start between 16.5s to 22.5s in composition time, or move it out of <div id=\"scene-demo\">."
+      },
+      {
+        "code": "nested_clip_never_visible",
+        "severity": "warning",
+        "message": "<div id=\"cta-lockup\"> plays from 0s to 4s, but it sits inside <div id=\"scene-cta\">, which only shows from 22s to 26s, so it never appears. A nested data-start counts from the composition's start, not from <div id=\"scene-cta\">.",
+        "selector": "#cta-lockup",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Give <div id=\"cta-lockup\"> a data-start between 22s to 26s in composition time, or move it out of <div id=\"scene-cta\">."
+      }
+    ],
+    "filesScanned": 4
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "WARNING: Multiple instances of Three.js being imported.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "26",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "line": 54560
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 26,
+    "samples": [
+      1.444,
+      4.333,
+      7.222,
+      10.111,
+      13,
+      15.889,
+      18.778,
+      21.667,
+      24.556
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "error",
+        "message": "Contrast is 1.06:1; WCAG AA requires 3:1.",
+        "text": "UPB",
+        "fg": "rgb(0,0,0)",
+        "bg": "rgb(10,10,15)",
+        "ratio": 1.06,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(94,94,94)",
+        "large": true,
+        "selector": "div > div:nth-of-type(6) > div > div > svg > text:nth-of-type(2)",
+        "dataAttributes": {
+          "data-hf-svg-reference-aliases": "[{\"name\":\"fill\",\"localName\":\"fill\",\"namespaceURI\":null,\"before\":\"url(#upbBrandGradient)\",\"after\":\"url(#upbBrandGradient)\"}]"
+        },
+        "sourceFile": "compositions/brand-overlay.html",
+        "bbox": {
+          "x": 32.232154846191406,
+          "y": 86.98876953125,
+          "width": 55.540794372558594,
+          "height": 34.018455505371094
+        },
+        "time": 1.444,
+        "times": [
+          1.444,
+          7.222,
+          13,
+          18.778,
+          24.556
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1.444,
+      7.222,
+      13,
+      18.778,
+      24.556
+    ],
+    "checked": 10,
+    "passed": 5
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "film_silent",
+        "severity": "warning",
+        "message": "This 26 s film has no sound source (no <audio>, no <video> with sound): add a music bed and sounds on the visible actions unless the person asked for silence; see references/sound.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 4.38 s (12.00–16.38 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 12,
+        "seconds": 4.375,
+        "floorSeconds": 3,
+        "until": 16.375
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 4.75 s (17.00–21.75 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 17,
+        "seconds": 4.75,
+        "floorSeconds": 3,
+        "until": 21.75
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 208
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "audio_none",
+        "severity": "info",
+        "message": "The film has no sound: no clip in it plays audio.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ]
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

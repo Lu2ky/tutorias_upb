@@ -1,0 +1,265 @@
+<div class="dashboard-page">
+  <div class="dashboard-container">
+    <!-- Welcome Header -->
+    <section class="welcome-section" aria-labelledby="welcome-title">
+      @if (currentUser(); as user) {
+        @if (currentTutor(); as tutor) {
+          <div class="welcome-content">
+            <div class="welcome-text">
+              <div class="tutor-badge">Tutor</div>
+              <h1 id="welcome-title" class="welcome-title">
+                ¡Hola, <strong>{{ user.name.split(' ')[0] }}</strong>! 👋
+              </h1>
+              <p class="welcome-subtitle">
+                {{ tutor.career }} • {{ tutor.subjects.length }} materias • {{ tutor.rating }}★ ({{ tutor.reviewCount }} reseñas)
+              </p>
+            </div>
+            <div class="welcome-actions">
+              <a routerLink="/tutor/classes" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Ver Mis Clases
+              </a>
+              <a routerLink="/tutor/profile" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                Mi Perfil
+              </a>
+            </div>
+          </div>
+        }
+      }
+    </section>
+
+    <!-- Stats Cards -->
+    <section class="stats-section" aria-labelledby="stats-title">
+      <h2 id="stats-title" class="section-title visually-hidden">Resumen de tus clases</h2>
+      <div class="stats-grid">
+        <article class="stat-card stat-total">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-value">{{ stats().total }}</span>
+            <span class="stat-label">Total Clases</span>
+          </div>
+        </article>
+        <article class="stat-card stat-confirmed">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-value">{{ stats().confirmed }}</span>
+            <span class="stat-label">Confirmadas</span>
+          </div>
+        </article>
+        <article class="stat-card stat-pending">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-value">{{ stats().pending }}</span>
+            <span class="stat-label">Pendientes</span>
+          </div>
+        </article>
+        <article class="stat-card stat-completed">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-value">{{ stats().completed }}</span>
+            <span class="stat-label">Completadas</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pending Classes (Action Required) -->
+    @if (tutorPendingClasses().length > 0) {
+      <section class="section pending-section" aria-labelledby="pending-title">
+        <header class="section-header">
+          <h2 id="pending-title" class="section-title">Clases Pendientes de Confirmación</h2>
+          <span class="pending-count">{{ tutorPendingClasses().length }} nueva{{ tutorPendingClasses().length !== 1 ? 's' : '' }}</span>
+        </header>
+        <div class="class-list">
+          @for (class of tutorPendingClasses(); track class.id) {
+            <article class="class-card priority-card" [class]="'status-' + class.status">
+              <div class="class-date">
+                <span class="day">{{ formatDate(class.date).split(' ')[1] }}</span>
+                <span class="month">{{ formatDate(class.date).split(' ')[2] }}</span>
+                <span class="weekday">{{ formatDate(class.date).split(' ')[0] }}</span>
+              </div>
+              <div class="class-info">
+                <h3 class="class-subject">{{ class.subject }}</h3>
+                <div class="class-meta">
+                  <span class="class-time">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {{ formatTime(class.startTime) }} - {{ formatTime(class.endTime) }}
+                  </span>
+                  <span class="class-student">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                    </svg>
+                    {{ getStudentName(class.studentId) }}
+                  </span>
+                </div>
+                @if (class.notes) {
+                  <p class="class-notes">"{{ class.notes }}"</p>
+                }
+              </div>
+              <div class="class-actions">
+                <span class="status-badge status-pending">Pendiente</span>
+                <div class="action-buttons">
+                  <button class="btn btn-danger btn-sm" (click)="cancelClass(class.id)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                    Cancelar
+                  </button>
+                  <button class="btn btn-primary btn-sm" (click)="confirmClass(class.id)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Upcoming Confirmed Classes -->
+    <section class="section" aria-labelledby="upcoming-title">
+      <header class="section-header">
+        <h2 id="upcoming-title" class="section-title">Próximas Clases Confirmadas</h2>
+        <a routerLink="/tutor/classes" class="section-link">Ver todas</a>
+      </header>
+
+      @if (tutorUpcomingClasses().filter(c => c.status === 'confirmed').length > 0) {
+        <div class="class-list">
+          @for (class of tutorUpcomingClasses(); track class.id) {
+            @if (class.status === 'confirmed') {
+              <article class="class-card" [class]="'status-' + class.status">
+                <div class="class-date">
+                  <span class="day">{{ formatDate(class.date).split(' ')[1] }}</span>
+                  <span class="month">{{ formatDate(class.date).split(' ')[2] }}</span>
+                  <span class="weekday">{{ formatDate(class.date).split(' ')[0] }}</span>
+                </div>
+                <div class="class-info">
+                  <h3 class="class-subject">{{ class.subject }}</h3>
+                  <div class="class-meta">
+                    <span class="class-time">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      {{ formatTime(class.startTime) }} - {{ formatTime(class.endTime) }}
+                    </span>
+                    <span class="class-student">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                      </svg>
+                      {{ getStudentName(class.studentId) }}
+                    </span>
+                  </div>
+                  @if (class.notes) {
+                    <p class="class-notes">"{{ class.notes }}"</p>
+                  }
+                </div>
+                <div class="class-actions">
+                  <span class="status-badge status-confirmed">Confirmada</span>
+                  <div class="action-buttons">
+                    <button class="btn btn-ghost btn-sm" (click)="openChat(class.id)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                      Chat
+                    </button>
+                    <button class="btn btn-secondary btn-sm" (click)="rescheduleClass(class.id)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                        <path d="M21 12a9 9 0 1 0-9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                        <path d="M16 16h5v5" />
+                      </svg>
+                      Reagendar
+                    </button>
+                  </div>
+                </div>
+              </article>
+            }
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <h3>No tienes clases confirmadas próximas</h3>
+          <p>Las clases confirmadas aparecerán aquí</p>
+        </div>
+      }
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="section" aria-labelledby="quick-title">
+      <h2 id="quick-title" class="section-title">Accesos Rápidos</h2>
+      <div class="actions-grid">
+        <a routerLink="/tutor/classes" class="action-card">
+          <div class="action-icon" style="background: var(--upb-primary-light); color: var(--upb-magenta);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
+          <h3>Gestionar Clases</h3>
+          <p>Ver historial completo, reagendar, cancelar</p>
+        </a>
+        <a routerLink="/tutor/profile" class="action-card">
+          <div class="action-icon" style="background: #D1FAE5; color: #065F46;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <h3>Mi Perfil de Tutor</h3>
+          <p>Actualizar disponibilidad, bio, tarifas</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

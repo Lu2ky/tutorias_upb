@@ -1,0 +1,398 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 11,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"scene-host\" data-track-index=\"0\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-composition-id=\"glass-hero\" data-start=\"0\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id=\"glass-hero\"]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"scene-host\" data-track-index=\"1\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-composition-id=\"canopy-part-title\" data-start=\"5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id=\"canopy-part-title\"]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"scene-host\" data-track-index=\"2\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-composition-id=\"grid-card-assemble\" data-start=\"12\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id=\"grid-card-assemble\"]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"scene-host\" data-track-index=\"3\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-composition-id=\"sticky-mock-swap\" data-start=\"18\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id=\"sticky-mock-swap\"]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"scene-host\" data-track-index=\"4\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-composition-id=\"store-badge-lockup\" data-start=\"23\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id=\"store-badge-lockup\"]",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"brand-mark\"> is a timeline element that contains nested <svg>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#brand-mark",
+        "dataAttributes": {},
+        "sourceFile": "/home/luky/Projects/mockups/tutorias_upb/promo-video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"brand-mark\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 3
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "WARNING: Multiple instances of Three.js being imported.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "26",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "line": 54560
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 26,
+    "samples": [
+      1.444,
+      4.333,
+      7.222,
+      10.111,
+      13,
+      15.889,
+      18.778,
+      21.667,
+      24.556
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "error",
+        "message": "Contrast is 1.06:1; WCAG AA requires 3:1.",
+        "text": "UPB",
+        "fg": "rgb(0,0,0)",
+        "bg": "rgb(10,10,15)",
+        "ratio": 1.06,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(94,94,94)",
+        "large": true,
+        "selector": "div > div:nth-of-type(6) > svg > text",
+        "dataAttributes": {
+          "data-hf-svg-reference-aliases": "[{\"name\":\"fill\",\"localName\":\"fill\",\"namespaceURI\":null,\"before\":\"url(#upbBrandGradient)\",\"after\":\"url(#upbBrandGradient)\"}]"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 32.23087692260742,
+          "y": 84.9897689819336,
+          "width": 55.54079818725586,
+          "height": 34.018455505371094
+        },
+        "time": 1.444,
+        "times": [
+          1.444,
+          13,
+          18.778,
+          24.556
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1.444,
+      7.222,
+      13,
+      18.778,
+      24.556
+    ],
+    "checked": 22,
+    "passed": 18
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "film_silent",
+        "severity": "warning",
+        "message": "This 26 s film has no sound source (no <audio>, no <video> with sound): add a music bed and sounds on the visible actions unless the person asked for silence; see references/sound.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.88 s (8.00–11.88 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 8,
+        "seconds": 3.875,
+        "floorSeconds": 3,
+        "until": 11.875
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"Clase virtual integrada\" (3 words) is on screen 0.93 s (±0.01 s), under its 1.05 s floor: hold it about 0.5 s + 0.3 s a word (1.40 s here) before it leaves or changes; see references/motion.md.",
+        "text": "Clase virtual integrada",
+        "selector": "div.sms-captions > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/components/sticky-mock-swap.html",
+        "bbox": {
+          "x": 1176.14,
+          "y": 476.54,
+          "width": 352.24,
+          "height": 141.14000000000004
+        },
+        "time": 22.07,
+        "words": 3,
+        "seconds": 0.93,
+        "floorSeconds": 1.05
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 208
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "audio_none",
+        "severity": "info",
+        "message": "The film has no sound: no clip in it plays audio.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ]
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

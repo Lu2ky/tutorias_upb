@@ -1,0 +1,389 @@
+<div class="schedule-page">
+  <div class="schedule-container">
+    <!-- Header -->
+    <header class="schedule-header">
+      <div class="header-content">
+        <h1 class="page-title">Agendar Tutoría</h1>
+        <p class="page-subtitle">Selecciona la materia, tutor, fecha y hora para tu clase</p>
+      </div>
+      <div class="step-indicator" role="progressbar" aria-valuenow="step()" aria-valuemin="1" aria-valuemax="5">
+        @for (stepItem of steps; track stepItem.num; let i = $index) {
+          <div class="step-item" [class.active]="step() >= stepItem.num" [class.completed]="step() > stepItem.num">
+            <div class="step-circle" [class.completed]="step() > stepItem.num">
+              @if (step() > stepItem.num) {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              } @else {
+                {{ stepItem.num }}
+              }
+            </div>
+            <span class="step-label">{{ stepItem.label }}</span>
+            @if (i < steps.length - 1) {
+              <div class="step-line" [class.completed]="step() > stepItem.num"></div>
+            }
+          </div>
+        }
+      </div>
+    </header>
+
+    @if (error()) {
+      <div class="alert alert-error" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="15" y1="9" x2="9" y2="15" />
+          <line x1="9" y1="9" x2="15" y2="15" />
+        </svg>
+        <span>{{ error() }}</span>
+      </div>
+    }
+
+    <!-- Step 1: Subject Selection -->
+    @if (step() === 1) {
+      <section class="step-content" aria-labelledby="step1-title">
+        <div class="step-header">
+          <h2 id="step1-title" class="step-title">¿Qué materia necesitas?</h2>
+        </div>
+        <div class="subject-grid">
+          @for (subject of subjects(); track subject.id) {
+            <button 
+              type="button"
+              class="subject-card"
+              [class.selected]="selectedSubject() === subject.name"
+              (click)="selectedSubject.set(subject.name); onSubjectChange()"
+            >
+              <div class="subject-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <h3>{{ subject.name }}</h3>
+              <span class="subject-code">{{ subject.code }}</span>
+            </button>
+          } @empty {
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
+              <h3>No hay materias disponibles</h3>
+              <p>No se encontraron materias para tu carrera. Contacta a soporte.</p>
+            </div>
+          }
+        </div>
+        <div class="step-footer">
+          <button type="button" class="btn btn-ghost btn-sm back-btn" (click)="goToDashboard()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Volver
+          </button>
+        </div>
+      </section>
+    }
+
+    <!-- Step 2: Tutor Selection -->
+    @if (step() === 2) {
+      <section class="step-content" aria-labelledby="step2-title">
+        <div class="step-header">
+          <button type="button" class="btn btn-ghost btn-sm back-btn" (click)="goBack()" aria-label="Volver">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Volver
+          </button>
+          <h2 id="step2-title" class="step-title">Elige tu tutor</h2>
+        </div>
+        <p class="step-subtitle">Tutores disponibles para <strong>{{ selectedSubject() }}</strong></p>
+
+        @if (filteredTutors().length > 0) {
+          <div class="tutor-list">
+            @for (tutor of filteredTutors(); track tutor.id) {
+              <button 
+                type="button"
+                class="tutor-selection-card"
+                [class.selected]="selectedTutor()?.id === tutor.id"
+                (click)="onTutorChange(tutor)"
+              >
+                <div class="tutor-avatar">
+                  <img [src]="getTutorAvatar(tutor)" [alt]="tutor.name" />
+                </div>
+                <div class="tutor-info">
+                  <h3>{{ tutor.name }}</h3>
+                  <div class="tutor-meta">
+                    <span class="tutor-rating">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                      {{ tutor.rating }}
+                    </span>
+                    <span class="tutor-reviews">({{ tutor.reviewCount }} reseñas)</span>
+                    <span class="tutor-rate">{{ tutor.hourlyRate.toLocaleString('es-CO') }} COP/hora</span>
+                  </div>
+                  <div class="tutor-subjects">
+                    @for (sub of tutor.subjects.slice(0, 3); track sub) {
+                      <span class="subject-tag">{{ sub }}</span>
+                    }
+                    @if (tutor.subjects.length > 3) {
+                      <span class="subject-tag more">+{{ tutor.subjects.length - 3 }}</span>
+                    }
+                  </div>
+                </div>
+                <div class="tutor-select-indicator">
+                  @if (selectedTutor()?.id === tutor.id) {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  }
+                </div>
+              </button>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <h3>No hay tutores disponibles</h3>
+            <p>Intenta con otra materia</p>
+          </div>
+        }
+        <div class="step-footer">
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Atrás</button>
+        </div>
+      </section>
+    }
+
+    <!-- Step 3: Date Selection -->
+    @if (step() === 3) {
+      <section class="step-content" aria-labelledby="step3-title">
+        <div class="step-header">
+          <button type="button" class="btn btn-ghost btn-sm back-btn" (click)="goBack()" aria-label="Volver">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Volver
+          </button>
+          <h2 id="step3-title" class="step-title">Selecciona la fecha</h2>
+        </div>
+        <p class="step-subtitle">Disponibilidad de <strong>{{ selectedTutor()?.name }}</strong></p>
+
+        <div class="date-selection">
+          <div class="calendar-wrapper">
+            <input 
+              type="date" 
+              class="date-input"
+              [value]="selectedDate()"
+              (change)="selectedDate.set($any($event.target).value); onDateChange()"
+              [min]="minDate"
+              [max]="maxDate"
+              required
+            />
+          </div>
+
+          @if (selectedDate()) {
+            <div class="availability-preview">
+              <h4>Horarios disponibles para {{ formatDate(selectedDate()) }}</h4>
+              @if (selectedTutor()) {
+                <div class="day-availability">
+                  @for (avail of getDayAvailability(); track avail.startTime) {
+                    <div class="availability-slot">
+                      <span class="slot-time">{{ formatTime(avail.startTime) }} - {{ formatTime(avail.endTime) }}</span>
+                      <span class="slot-status available">Disponible</span>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+        <div class="step-footer">
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Atrás</button>
+        </div>
+      </section>
+    }
+
+    <!-- Step 4: Time Slot Selection -->
+    @if (step() === 4) {
+      <section class="step-content" aria-labelledby="step4-title">
+        <div class="step-header">
+          <button type="button" class="btn btn-ghost btn-sm back-btn" (click)="goBack()" aria-label="Volver">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Volver
+          </button>
+          <h2 id="step4-title" class="step-title">Elige la hora</h2>
+        </div>
+        <p class="step-subtitle">Horarios libres para el {{ formatDate(selectedDate()) }}</p>
+
+        @if (hasConflicts()) {
+          <div class="alert alert-warning" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <div class="alert-content">
+              <strong>¡Conflicto de horarios detectado!</strong>
+              <ul>
+                @for (detail of conflictDetails(); track detail) {
+                  <li>{{ detail }}</li>
+                }
+              </ul>
+              <p>Por favor, selecciona otro horario disponible.</p>
+            </div>
+          </div>
+        }
+
+        <p class="step-subtitle">Horarios libres para el {{ formatDate(selectedDate()) }}</p>
+
+        @if (availableSlots().length > 0) {
+          <div class="time-slots-grid">
+            @for (slot of availableSlots(); track slot.start + slot.end) {
+              <button 
+                type="button"
+                class="time-slot"
+                [class.selected]="selectedTimeSlot()?.start === slot.start"
+                [class.conflict]="hasConflicts()"
+                (click)="onTimeSlotSelect(slot)"
+                [disabled]="hasConflicts()"
+              >
+                <span class="slot-start">{{ formatTime(slot.start) }}</span>
+                <span class="slot-separator">-</span>
+                <span class="slot-end">{{ formatTime(slot.end) }}</span>
+                @if (hasConflicts()) {
+                  <span class="conflict-badge">Conflicto</span>
+                }
+              </button>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <h3>No hay horarios disponibles</h3>
+            <p>Este tutor no tiene disponibilidad en la fecha seleccionada o todos los horarios están ocupados</p>
+          </div>
+        }
+        <div class="step-footer">
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Atrás</button>
+        </div>
+      </section>
+    }
+
+    <!-- Step 5: Confirmation -->
+    @if (step() === 5) {
+      <section class="step-content confirmation-step" aria-labelledby="step5-title">
+        <div class="step-header">
+          <button type="button" class="btn btn-ghost btn-sm back-btn" (click)="goBack()" aria-label="Volver">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Volver
+          </button>
+          <h2 id="step5-title" class="step-title">Confirmar Reserva</h2>
+        </div>
+
+        @if (hasConflicts()) {
+          <div class="alert alert-error" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <div class="alert-content">
+              <strong>¡No puedes confirmar esta reserva!</strong>
+              <ul>
+                @for (detail of conflictDetails(); track detail) {
+                  <li>{{ detail }}</li>
+                }
+              </ul>
+              <p>Por favor, vuelve al paso anterior y selecciona otro horario.</p>
+            </div>
+          </div>
+        } @else {
+          <div class="confirmation-card">
+            <div class="confirmation-header">
+              <div class="tutor-avatar small">
+                <img [src]="getTutorAvatar(selectedTutor()!)" [alt]="selectedTutor()!.name" />
+              </div>
+              <div class="confirmation-tutor-info">
+                <h3>{{ selectedTutor()?.name }}</h3>
+                <p>{{ selectedSubject() }}</p>
+              </div>
+            </div>
+
+            <div class="confirmation-details">
+              <div class="detail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <div>
+                  <span class="detail-label">Fecha</span>
+                  <span class="detail-value">{{ formatDate(selectedDate()!) }}</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <div>
+                  <span class="detail-label">Hora</span>
+                  <span class="detail-value">{{ formatTime(selectedTimeSlot()!.start) }} - {{ formatTime(selectedTimeSlot()!.end) }}</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                <div>
+                  <span class="detail-label">Notas (opcional)</span>
+                  <textarea 
+                    class="notes-input"
+                    [(ngModel)]="notes"
+                    placeholder="¿Qué temas quieres repasar? (opcional)"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="confirmation-price">
+              <span class="price-label">Total estimado</span>
+              <span class="price-value">{{ selectedTutor()?.hourlyRate.toLocaleString('es-CO') }} COP</span>
+            </div>
+          </div>
+
+          <div class="step-footer step-footer-confirm">
+            <button type="button" class="btn btn-secondary" (click)="goBack()">Atrás</button>
+            <button type="button" class="btn btn-primary" [disabled]="isLoading() || hasConflicts()" (click)="onSubmit()">
+              @if (isLoading()) {
+                <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round" />
+                </svg>
+                Confirmando...
+              } @else if (hasConflicts()) {
+                Conflicto detectado
+              } @else {
+                Confirmar y Agendar
+              }
+            </button>
+          </div>
+        }
+      </section>
+    }
+
+  </div>
+</div>

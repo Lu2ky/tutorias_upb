@@ -1,0 +1,10 @@
+{
+  "compositions/canopy-part-title/assets/leaf-surface-color.webp": "c56b647034523b070d9eb1ea7cdc89b1c8d34d7fb5fcc5c805984b3fbde86f8a",
+  "compositions/canopy-part-title/assets/leaf-surface-normal.webp": "c0c37fab0fdfa85d4db1b2f42e98f74b0eaaa4397bd4c072d549f0b7ec08daae",
+  "compositions/canopy-part-title/canopy-part-title.html": "e4cf173be362f9c02a5efedd995ff68c118242ae15512adb2c8e4f5e16f1fc5a",
+  "compositions/canopy-part-title/SKILL.md": "10d0920d89adca86e11f30137d31b4236ce37913b0a00004c2b0305fd9923783",
+  "compositions/components/grid-card-assemble.html": "8713fc92043a353732f4d9bd8832e0023a2019472d3a9cfffc566ff6fd194042",
+  "compositions/components/sticky-mock-swap.html": "ab64462a7e027304add5cb6453f508e03e959cc89425408ecf69189e472228e9",
+  "compositions/components/store-badge-lockup.html": "82f0f1eb2652f474648d4918dceca03f52ff073a8aa594a24c894ed9c949f367",
+  "compositions/glass-hero.html": "d49ba5ea111af72138f1693d8cc1de60520191fbe96ff71ac88f6a1fe02cea88"
+}

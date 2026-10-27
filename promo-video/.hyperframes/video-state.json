@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "historyId": "93488152-adb6-4cfc-95bb-e20f743432be",
+  "currentRevision": "3af7a007-3bb7-416f-a2d1-d92cf838b189",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "CLAUDE.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "compositions/canopy-part-title/SKILL.md": {
+      "hash": "10d0920d89adca86e11f30137d31b4236ce37913b0a00004c2b0305fd9923783",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/10/10d0920d89adca86e11f30137d31b4236ce37913b0a00004c2b0305fd9923783"
+    },
+    "compositions/canopy-part-title/assets/leaf-surface-color.webp": {
+      "hash": "c56b647034523b070d9eb1ea7cdc89b1c8d34d7fb5fcc5c805984b3fbde86f8a",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/c5/c56b647034523b070d9eb1ea7cdc89b1c8d34d7fb5fcc5c805984b3fbde86f8a"
+    },
+    "compositions/canopy-part-title/assets/leaf-surface-normal.webp": {
+      "hash": "c0c37fab0fdfa85d4db1b2f42e98f74b0eaaa4397bd4c072d549f0b7ec08daae",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/c0/c0c37fab0fdfa85d4db1b2f42e98f74b0eaaa4397bd4c072d549f0b7ec08daae"
+    },
+    "compositions/canopy-part-title/canopy-part-title.html": {
+      "hash": "e4cf173be362f9c02a5efedd995ff68c118242ae15512adb2c8e4f5e16f1fc5a",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/e4/e4cf173be362f9c02a5efedd995ff68c118242ae15512adb2c8e4f5e16f1fc5a"
+    },
+    "compositions/components/grid-card-assemble.html": {
+      "hash": "065555f1a2441b14eeea27fb52421957f9b5b0569f1e76470747401f56e5e0f1",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/06/065555f1a2441b14eeea27fb52421957f9b5b0569f1e76470747401f56e5e0f1"
+    },
+    "compositions/components/sticky-mock-swap.html": {
+      "hash": "2ccd00c87c60cc324fa6abfdad7892e20589cc8ae9fb57e1224b50e8c8262855",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/2c/2ccd00c87c60cc324fa6abfdad7892e20589cc8ae9fb57e1224b50e8c8262855"
+    },
+    "compositions/components/store-badge-lockup.html": {
+      "hash": "6958cc1bdc5aeae9cfb9c73f38f7b064bb91e1812b19e334f644dd94a1c610b6",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/69/6958cc1bdc5aeae9cfb9c73f38f7b064bb91e1812b19e334f644dd94a1c610b6"
+    },
+    "compositions/glass-hero.html": {
+      "hash": "a88eee9d15073b981c975e5da1b254521ee46fbd3d28709015a2ea2a6df7f4a3",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/a8/a88eee9d15073b981c975e5da1b254521ee46fbd3d28709015a2ea2a6df7f4a3"
+    },
+    "hyperframes.json": {
+      "hash": "a62ed059e01be34bf7423407d87251278ad0668e51b457ab411484cd174b29bb",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/a6/a62ed059e01be34bf7423407d87251278ad0668e51b457ab411484cd174b29bb"
+    },
+    "hyperframes.lock.json": {
+      "hash": "7b83bc849aba4c7500765076a83a13fa6fa890ad54fdb20835d107a13bdf773b",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/7b/7b83bc849aba4c7500765076a83a13fa6fa890ad54fdb20835d107a13bdf773b"
+    },
+    "index.html": {
+      "hash": "4973922efc05c6563d0a9588bc4f6156b89600bdd5e62edc40cd1e7aba1b64ed",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/49/4973922efc05c6563d0a9588bc4f6156b89600bdd5e62edc40cd1e7aba1b64ed"
+    },
+    "meta.json": {
+      "hash": "f0e24d94c5af4ce8c3745efa91691a703f1ba65fcaa8b32c93a8ac80c305d9b9",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/f0/f0e24d94c5af4ce8c3745efa91691a703f1ba65fcaa8b32c93a8ac80c305d9b9"
+    },
+    "package.json": {
+      "hash": "d43c9305135ec4aa456f1656ba4a206cbcbec833d9f754d3cb5232c6dd1a39e3",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/d4/d43c9305135ec4aa456f1656ba4a206cbcbec833d9f754d3cb5232c6dd1a39e3"
+    },
+    "compositions/brand-overlay.html": {
+      "hash": "de0e411e59a52d6fabd496b27b23521de330164f3fc8b6d0b4dac69688f09d60",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/de/de0e411e59a52d6fabd496b27b23521de330164f3fc8b6d0b4dac69688f09d60"
+    },
+    "assets/music-bed.wav": {
+      "hash": "71c5ff879eb4316ecacf1293eec4136dbdc91279c8cc58652e8c9086b76eafe9",
+      "content": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/71/71c5ff879eb4316ecacf1293eec4136dbdc91279c8cc58652e8c9086b76eafe9"
+    }
+  },
+  "revisions": {
+    "0323a5ac-2c49-4bca-89aa-3c884c685e11": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793062450898,
+      "endedAt": 1793062451473,
+      "files": {
+        "compositions/brand-overlay.html": {
+          "before": null,
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/19/19c758572ba9436f36e652aa193ccbf4d23e1110f231c7743280341ec0bb3c35"
+        },
+        "index.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/11/116288f4d9a8d87d55f474b788190efa44cefafb176145a3bdbd24232713a33d",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/3d/3dd4998797b86970e2fb5399393985593449e0d6e96cadbfa429ac166a98ddb0"
+        }
+      }
+    },
+    "3918b611-1a64-49e2-a8a5-ec2b88e47287": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793062539652,
+      "endedAt": 1793062540087,
+      "files": {
+        "compositions/brand-overlay.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/19/19c758572ba9436f36e652aa193ccbf4d23e1110f231c7743280341ec0bb3c35",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/e4/e48ed42298bdc2412ded8e11d4a352c8751c4671292352f129d07977de1c7a27"
+        },
+        "index.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/3d/3dd4998797b86970e2fb5399393985593449e0d6e96cadbfa429ac166a98ddb0",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/e0/e083dbf13503173e3b93065cfbb3cb15b847a40d13e60833a9a990a2422e6372"
+        }
+      }
+    },
+    "8384d9d6-1e0d-4c25-9c8a-6c6a02c093c9": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793062653148,
+      "endedAt": 1793062653162,
+      "files": {
+        "assets/music-bed.wav": {
+          "before": null,
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/71/71c5ff879eb4316ecacf1293eec4136dbdc91279c8cc58652e8c9086b76eafe9"
+        },
+        "index.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/e0/e083dbf13503173e3b93065cfbb3cb15b847a40d13e60833a9a990a2422e6372",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/c5/c58088cfa6ec44b79515d9e75d24100dee254879e09dc947b337f7bbf3db29fe"
+        }
+      }
+    },
+    "6893f747-9473-4b45-9e18-e8211ae3a0c5": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793062664177,
+      "endedAt": 1793062664178,
+      "files": {
+        "index.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/c5/c58088cfa6ec44b79515d9e75d24100dee254879e09dc947b337f7bbf3db29fe",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/42/42611172cee0daf96eb9929019adf7d00835cb256a1cf4a8d960d905bf0b5a31"
+        }
+      }
+    },
+    "3af7a007-3bb7-416f-a2d1-d92cf838b189": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793062709957,
+      "endedAt": 1793062709975,
+      "files": {
+        "compositions/brand-overlay.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/e4/e48ed42298bdc2412ded8e11d4a352c8751c4671292352f129d07977de1c7a27",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/de/de0e411e59a52d6fabd496b27b23521de330164f3fc8b6d0b4dac69688f09d60"
+        },
+        "compositions/components/grid-card-assemble.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/87/8713fc92043a353732f4d9bd8832e0023a2019472d3a9cfffc566ff6fd194042",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/06/065555f1a2441b14eeea27fb52421957f9b5b0569f1e76470747401f56e5e0f1"
+        },
+        "compositions/components/sticky-mock-swap.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/ab/ab64462a7e027304add5cb6453f508e03e959cc89425408ecf69189e472228e9",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/2c/2ccd00c87c60cc324fa6abfdad7892e20589cc8ae9fb57e1224b50e8c8262855"
+        },
+        "compositions/components/store-badge-lockup.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/82/82f0f1eb2652f474648d4918dceca03f52ff073a8aa594a24c894ed9c949f367",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/69/6958cc1bdc5aeae9cfb9c73f38f7b064bb91e1812b19e334f644dd94a1c610b6"
+        },
+        "compositions/glass-hero.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/d4/d49ba5ea111af72138f1693d8cc1de60520191fbe96ff71ac88f6a1fe02cea88",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/a8/a88eee9d15073b981c975e5da1b254521ee46fbd3d28709015a2ea2a6df7f4a3"
+        },
+        "index.html": {
+          "before": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/42/42611172cee0daf96eb9929019adf7d00835cb256a1cf4a8d960d905bf0b5a31",
+          "after": "/home/luky/.cache/hyperframes/history/93488152-adb6-4cfc-95bb-e20f743432be/blobs/49/4973922efc05c6563d0a9588bc4f6156b89600bdd5e62edc40cd1e7aba1b64ed"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "6893f747-9473-4b45-9e18-e8211ae3a0c5",
+      "id": "d616b721-8ddd-4a3d-b561-f8711521207f"
+    },
+    "revisions": {
+      "0323a5ac-2c49-4bca-89aa-3c884c685e11": [
+        {
+          "id": "ce24f92d-e57e-4078-87ad-1112d2b4bc16",
+          "scope": "project",
+          "report": "/home/luky/Projects/mockups/tutorias_upb/promo-video/.hyperframes/artifacts/checks/ce24f92d-e57e-4078-87ad-1112d2b4bc16.json",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793062483780,
+          "contentHash": "f070ea94dbc4fd1cd8c67e1fac566d9feb0cf7ee3989d4cb197bf6025d2b1105",
+          "revision": "0323a5ac-2c49-4bca-89aa-3c884c685e11",
+          "inputFingerprint": "dea3bb784f1bd0a29be98afd97741028e2793972a86222b4c9b39bae5ada78bb",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "3918b611-1a64-49e2-a8a5-ec2b88e47287": [
+        {
+          "id": "af247f93-1c63-4f9a-8805-004f1d8c5a49",
+          "scope": "project",
+          "report": "/home/luky/Projects/mockups/tutorias_upb/promo-video/.hyperframes/artifacts/checks/af247f93-1c63-4f9a-8805-004f1d8c5a49.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793062574273,
+          "contentHash": "0e79915ea9ba34d0b3c311366b742c40ba401225ea3193256cf0f26fb7239481",
+          "revision": "3918b611-1a64-49e2-a8a5-ec2b88e47287",
+          "inputFingerprint": "303d5c5fe75f00e888f0e53965977fda8b094f0701400dcc638b23a4811ac675",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "8384d9d6-1e0d-4c25-9c8a-6c6a02c093c9": [
+        {
+          "id": "7dd8dbe5-2c87-450d-9566-aba95bd0c2ef",
+          "scope": "project",
+          "report": "/home/luky/Projects/mockups/tutorias_upb/promo-video/.hyperframes/artifacts/checks/7dd8dbe5-2c87-450d-9566-aba95bd0c2ef.json",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": true,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793062654417,
+          "contentHash": "18bdfe7ec705cb38c1c76912852b0de739620ee86890967230c5ad1def3c0075",
+          "revision": "8384d9d6-1e0d-4c25-9c8a-6c6a02c093c9",
+          "inputFingerprint": "6c1b61e1094f18387e07bd3bc251f55f27e781c5cf30f81a136ae7d010c0af46",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "6893f747-9473-4b45-9e18-e8211ae3a0c5": [
+        {
+          "id": "d616b721-8ddd-4a3d-b561-f8711521207f",
+          "scope": "project",
+          "report": "/home/luky/Projects/mockups/tutorias_upb/promo-video/.hyperframes/artifacts/checks/d616b721-8ddd-4a3d-b561-f8711521207f.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793062698197,
+          "contentHash": "2b24fdf1e5cb32fe5610f0ff752d042ca51a133fc10d34cbc0e3242099296271",
+          "revision": "6893f747-9473-4b45-9e18-e8211ae3a0c5",
+          "inputFingerprint": "cfb766969e779a4b998ed92c490920a84e5e1c3a98f15d14a61f93789d3fd840",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "6296daef-d8b0-4254-8db2-e94cfc5621cc",
+        "scope": "project",
+        "report": "/home/luky/Projects/mockups/tutorias_upb/promo-video/.hyperframes/artifacts/checks/6296daef-d8b0-4254-8db2-e94cfc5621cc.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793062375706,
+        "contentHash": "9fc6295c9e21562d0b32521c3c789e3c4470032fb6313ea1e5999240a2f62652",
+        "revision": null,
+        "inputFingerprint": "2e033a1a3f29aba005750d10d3f87aaae202d3e53686f02f94d63959dc36ad8e",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- hyperframes-registry-item: brand-overlay -->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: transparent;
+      }
+      #root {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .brand-mark {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-ls2l"
+      id="root"
+      data-composition-id="brand-overlay"
+      data-start="0"
+      data-duration="26"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div data-hf-id="hf-58dk" id="brand-mark" class="brand-mark clip" data-start="0" data-duration="26" data-track-index="0">
+        <svg data-hf-id="hf-ol6q" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs data-hf-id="hf-mh0t">
+            <linearGradient data-hf-id="hf-9xoq" id="upbBrandGradient" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+              <stop data-hf-id="hf-vkeh" offset="0%" stop-color="#F50C4B"/>
+              <stop data-hf-id="hf-egs2" offset="50%" stop-color="#D01C9E"/>
+              <stop data-hf-id="hf-4xgl" offset="100%" stop-color="#A63CF2"/>
+            </linearGradient>
+          </defs>
+          <!-- Dark background circle for contrast -->
+          <circle data-hf-id="hf-culn" cx="60" cy="60" r="58" fill="#0a0a0f" opacity="0.9"/>
+          <circle data-hf-id="hf-e3v4" cx="60" cy="60" r="56" stroke="url(#upbBrandGradient)" stroke-width="3" fill="none"/>
+          <!-- White text for better contrast -->
+          <text data-hf-id="hf-rkbb" x="60" y="74" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.02em">UPB</text>
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var root = document.getElementById("root");
+        var mark = document.getElementById("brand-mark");
+        var duration = Math.max(0.001, parseFloat(root.dataset.duration) || 26);
+
+        var tl = gsap.timeline({ paused: true });
+
+        // Fade in
+        tl.fromTo(mark,
+          { opacity: 0, scale: 0.8, rotate: -15 },
+          { opacity: 0.18, scale: 1, rotate: 0, duration: 1.2, ease: "power3.out" },
+          0.5
+        );
+
+        // Subtle pulses at key moments
+        tl.to(mark, { opacity: 0.28, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: 3 }, 4.5);
+        tl.to(mark, { opacity: 0.22, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 2 }, 10.5);
+        tl.to(mark, { opacity: 0.35, duration: 0.5, ease: "power2.in" }, 21.5);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["brand-overlay"] = tl;
+        tl.seek(0);
+      })();
+    </script>
+  </body>
+</html>

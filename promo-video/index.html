@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --upb-crimson: #F50C4B;
+        --upb-magenta: #D01C9E;
+        --upb-violet: #A63CF2;
+        --upb-gradient: linear-gradient(90deg, #F50C4B 0%, #D01C9E 50%, #A63CF2 100%);
+        --bg: #0a0a0f;
+        --fg: #ffffff;
+        --muted: #8b8b9e;
+        --surface: #12121a;
+        --border: #2a2a3a;
+        --font-display: "Inter", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+        font-family: var(--font-display);
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-3x1a" id="root" data-composition-id="main" data-start="0" data-duration="26" data-width="1920" data-height="1080">
+      <!-- Background music -->
+      <audio data-hf-id="hf-mcz3" id="bg-music" class="clip" data-start="0" data-duration="26" src="assets/music-bed.wav" loop></audio>
+      <!-- Scene 1: Glass Hero - Opening (0-5s) -->
+      <div data-hf-id="hf-bepf"
+        id="hero-glass"
+        class="clip"
+        data-composition-id="glass-hero"
+        data-composition-src="compositions/glass-hero.html"
+        data-start="0"
+        data-duration="5"
+        data-width="1920"
+        data-height="1080"
+        data-variable-values='{"headline":"TUTORÍAS UPB","subline":"Tu éxito académico comienza aquí","background":"#0a0a0f","type_color":"#ffffff","glass_tint":"#F50C4B","shape":"lens"}'
+      ></div>
+
+      <!-- Scene 2: Canopy Part Title - Value Prop (4.5-11s) -->
+      <div data-hf-id="hf-28jh"
+        id="value-canopy"
+        class="clip"
+        data-composition-id="canopy-part-title"
+        data-composition-src="compositions/canopy-part-title/canopy-part-title.html"
+        data-start="4.5"
+        data-duration="6.5"
+        data-width="1920"
+        data-height="1080"
+        data-variable-values='{"headline1":"Agenda clases","headline2":"Con tutores expertos","background":"#0a0a0f","font":"Inter","fontWeight":800,"fontSize":1.1,"letterSpacing":0.02}'
+      ></div>
+
+      <!-- Scene 3: Grid Card Assemble - Features (10.5-17s) -->
+      <div data-hf-id="hf-r4vo"
+        id="features-grid"
+        class="clip"
+        data-composition-id="grid-card-assemble"
+        data-composition-src="compositions/components/grid-card-assemble.html"
+        data-start="10.5"
+        data-duration="6.5"
+        data-width="1920"
+        data-height="1080"
+        data-variable-values='{"items":"Clases 1:1: Sesiones personalizadas,Base de conocimiento: Por carrera y materia,Horario flexible: Tú eliges cuándo,Aulas virtuales: Videollamada integrada,Progreso real: Seguimiento y métricas","layout":"grid","columns":3,"accent":"violet","cues":"0.2,0.35,0.5,0.65,0.8","exit":"fade"}'
+      ></div>
+
+      <!-- Scene 4: Sticky Mock Swap - Product Demo (16.5-22.5s) -->
+      <div data-hf-id="hf-t1i6"
+        id="demo-sticky"
+        class="clip"
+        data-composition-id="sticky-mock-swap"
+        data-composition-src="compositions/components/sticky-mock-swap.html"
+        data-start="16.5"
+        data-duration="6"
+        data-width="1920"
+        data-height="1080"
+        data-variable-values='{"captions":"Busca tu tutor ideal,Agenda en segundos,Clase virtual con pizarra","accent":"violet"}'
+      ></div>
+
+      <!-- Scene 5: Store Badge Lockup - CTA (22-26s) -->
+      <div data-hf-id="hf-4rtq"
+        id="cta-lockup"
+        class="clip"
+        data-composition-id="store-badge-lockup"
+        data-composition-src="compositions/components/store-badge-lockup.html"
+        data-start="22"
+        data-duration="4"
+        data-width="1920"
+        data-height="1080"
+        data-variable-values='{"headline":"Únete a miles de estudiantes UPB","showApple":"yes","showGoogle":"yes"}'
+      ></div>
+
+      <!-- UPB Brand Mark - Persistent overlay (0-26s) -->
+      <div data-hf-id="hf-scou"
+        id="brand-overlay"
+        class="clip"
+        data-composition-id="brand-overlay"
+        data-composition-src="compositions/brand-overlay.html"
+        data-start="0"
+        data-duration="26"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+    </div>
+
+    <script>
+      // Main timeline - orchestrates scene transitions
+      // Each sub-composition manages its own internal timeline
+      const tl = gsap.timeline({ paused: true });
+
+      // No additional orchestration needed - scenes handle their own animations
+      // This timeline exists to satisfy the root composition contract
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

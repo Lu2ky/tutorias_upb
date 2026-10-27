@@ -1,0 +1,9 @@
+@if (dataService.isAuthenticated()) {
+  <app-header />
+}
+<main class="main-content">
+  <router-outlet />
+</main>
+@if (dataService.isAuthenticated()) {
+  <app-footer />
+}

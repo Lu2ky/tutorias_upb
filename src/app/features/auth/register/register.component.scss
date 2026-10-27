@@ -1,0 +1,135 @@
+@use '../../auth/login/login.component.scss' as *;
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 480px) {
+  .form-row.half {
+    flex-direction: row;
+  }
+  
+  .form-row.half .form-group {
+    flex: 1;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-icon {
+  position: absolute;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--gray-400);
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.select-wrapper:focus-within .select-icon {
+  color: var(--upb-magenta);
+}
+
+.select {
+  width: 100%;
+  padding: var(--space-md) var(--space-md) var(--space-md) var(--space-md);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  font-size: 1rem;
+  color: var(--gray-900);
+  appearance: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding-right: 44px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--upb-magenta);
+  box-shadow: 0 0 0 3px var(--upb-primary-light);
+}
+
+.select:disabled {
+  background: var(--gray-100);
+  cursor: not-allowed;
+}
+
+.password-strength {
+  margin-top: var(--space-sm);
+}
+
+.strength-bar {
+  display: flex;
+  gap: var(--space-xs);
+  height: 6px;
+  margin-bottom: var(--space-xs);
+}
+
+.strength-segment {
+  flex: 1;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gray-200);
+  transition: all var(--transition-fast);
+}
+
+.strength-segment.active.level-1,
+.strength-segment.active.level-2 {
+  background: var(--upb-crimson);
+}
+
+.strength-segment.active.level-3 {
+  background: var(--status-pending-text);
+}
+
+.strength-segment.active.level-4,
+.strength-segment.active.level-5 {
+  background: var(--status-confirmed-text);
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.form-error {
+  margin: var(--space-xs) 0 0;
+  font-size: 0.75rem;
+  color: var(--upb-crimson);
+}
+
+.checkbox-wrapper span:last-child {
+  font-size: 0.8125rem;
+  color: var(--gray-600);
+  line-height: 1.4;
+}
+
+.checkbox-wrapper a {
+  color: var(--upb-magenta);
+  font-weight: 500;
+}
+
+.checkbox-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.input-error {
+  border-color: var(--upb-crimson) !important;
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(245, 12, 75, 0.1) !important;
+}

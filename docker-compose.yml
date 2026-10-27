@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  tutorias-upb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tutorias-upb-app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - tutorias-network
+
+networks:
+  tutorias-network:
+    driver: bridge
